@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MiaVideoPanelComponent } from './mia-video-panel.component';
+import { VideoListComponent } from './video-list.component';
 
-describe('MiaVideoPanelComponent', () => {
-  let component: MiaVideoPanelComponent;
-  let fixture: ComponentFixture<MiaVideoPanelComponent>;
+describe('VideoListComponent', () => {
+  let component: VideoListComponent;
+  let fixture: ComponentFixture<VideoListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MiaVideoPanelComponent ]
+      declarations: [ VideoListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MiaVideoPanelComponent);
+    fixture = TestBed.createComponent(VideoListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

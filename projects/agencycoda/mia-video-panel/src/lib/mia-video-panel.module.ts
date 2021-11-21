@@ -1,16 +1,27 @@
 import { NgModule } from '@angular/core';
-import { MiaVideoPanelComponent } from './mia-video-panel.component';
 
+// Agency Coda Libraries
+import { MiaCoreModule } from '@agencycoda/mia-core';
+import { MiaFormModule } from '@agencycoda/mia-form';
+import { MiaTableModule } from '@agencycoda/mia-table';
+import { MiaLayoutModule } from '@agencycoda/mia-layout';
+
+// Components
+import { VideoListComponent } from './pages/video-list/video-list.component';
 
 
 @NgModule({
   declarations: [
-    MiaVideoPanelComponent
+    VideoListComponent
   ],
   imports: [
+    MiaCoreModule,
+    MiaTableModule,
+    MiaFormModule,
+    MiaLayoutModule
   ],
   exports: [
-    MiaVideoPanelComponent
+    VideoListComponent
   ]
 })
 export class MiaVideoPanelModule { }
