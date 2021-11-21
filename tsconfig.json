@@ -6,6 +6,10 @@
       "@agencycoda/mia-video-core": [
         "dist/agencycoda/mia-video-core/agencycoda-mia-video-core",
         "dist/agencycoda/mia-video-core"
+      ],
+      "@agencycoda/mia-video-panel": [
+        "dist/agencycoda/mia-video-panel/agencycoda-mia-video-panel",
+        "dist/agencycoda/mia-video-panel"
       ]
     },
     "baseUrl": "./",

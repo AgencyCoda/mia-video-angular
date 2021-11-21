@@ -36,6 +36,37 @@
           }
         }
       }
+    },
+    "@agencycoda/mia-video-panel": {
+      "projectType": "library",
+      "root": "projects/agencycoda/mia-video-panel",
+      "sourceRoot": "projects/agencycoda/mia-video-panel/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/agencycoda/mia-video-panel/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/agencycoda/mia-video-panel/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/agencycoda/mia-video-panel/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/agencycoda/mia-video-panel/src/test.ts",
+            "tsConfig": "projects/agencycoda/mia-video-panel/tsconfig.spec.json",
+            "karmaConfig": "projects/agencycoda/mia-video-panel/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "@agencycoda/mia-video-core"
