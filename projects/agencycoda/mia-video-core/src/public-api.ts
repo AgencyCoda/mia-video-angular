@@ -2,6 +2,17 @@
  * Public API Surface of mia-video-core
  */
 
-export * from './lib/mia-video-core.service';
-export * from './lib/mia-video-core.component';
+/*
+ * Entites
+ */
+export * from './lib/entities/mia_video';
+
+/*
+ * Services
+ */
+export * from './lib/services/mia_video.service';
+
+/*
+ * Modules
+ */
 export * from './lib/mia-video-core.module';

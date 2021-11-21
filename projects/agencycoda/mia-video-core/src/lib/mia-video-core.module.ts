@@ -1,16 +1,15 @@
+import { MiaCoreModule } from '@agencycoda/mia-core';
 import { NgModule } from '@angular/core';
-import { MiaVideoCoreComponent } from './mia-video-core.component';
-
-
 
 @NgModule({
   declarations: [
-    MiaVideoCoreComponent
+    
   ],
   imports: [
+    MiaCoreModule
   ],
   exports: [
-    MiaVideoCoreComponent
+    
   ]
 })
 export class MiaVideoCoreModule { }
