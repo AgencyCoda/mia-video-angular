@@ -2,6 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@agencycoda/mia-video-core": [
+        "dist/agencycoda/mia-video-core/agencycoda-mia-video-core",
+        "dist/agencycoda/mia-video-core"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
