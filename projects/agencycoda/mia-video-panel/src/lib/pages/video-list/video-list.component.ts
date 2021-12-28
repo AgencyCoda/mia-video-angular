@@ -102,7 +102,7 @@ export class VideoListComponent implements OnInit {
     this.config.formConfig.config = new MiaFormConfig();
     this.config.formConfig.config.hasSubmit = false;
     this.config.formConfig.config.fields = [
-      { key: 'photo', type: MiaField.TYPE_PHOTO, label: 'Photo' },
+      { key: 'photo', type: MiaField.TYPE_PHOTO_HEADER, label: 'Photo' },
       { key: 'title', type: MiaField.TYPE_STRING, label: 'Title' },
       { key: 'categories', type: MiaField.TYPE_CHIPS_AND_SELECT_SERVICE, label: 'Category', caption: '', extra: { 
         title: 'Categories', 
