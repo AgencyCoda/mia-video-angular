@@ -1,10 +1,14 @@
-import { nil } from '@agencycoda/mia-core';
-import { MiaField, MiaFormConfig } from '@agencycoda/mia-form';
+import { MiaCategory, MiaCategoryService } from '@agencycoda/mia-category-core';
+import { MiaQuery, nil } from '@agencycoda/mia-core';
+import { MiaField, MiaFormConfig, SwitchFieldComponent } from '@agencycoda/mia-form';
 import { MiaPageCrudComponent, MiaPageCrudConfig } from '@agencycoda/mia-layout';
 import { MiaColumn } from '@agencycoda/mia-table';
-import { MiaVideoService } from '@agencycoda/mia-video-core';
+import { MiaVideo, MiaVideoService } from '@agencycoda/mia-video-core';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { MiaCategoryModalService } from '../../modals/mia-category.modal.service';
 
 @Component({
   selector: 'mia-video-list',
@@ -19,6 +23,8 @@ export class VideoListComponent implements OnInit {
 
   constructor(
     protected videoService: MiaVideoService,
+    protected categoryModal: MiaCategoryModalService,
+    protected categoryService: MiaCategoryService,
     protected navigator: Router
   ) { }
 
@@ -37,7 +43,7 @@ export class VideoListComponent implements OnInit {
 
   onAction(action: {key: string; item: any;}) {
     if(action.key == 'add'){
-      alert('Click ADD');
+      this.pageComp.openForm(new MiaVideo()).pipe(nil()).subscribe(result => this.pageComp.loadItems());
     } else if (action.key == 'search') {
       this.onSearch(action.item);
     } else if(action.key == 'edit'){
@@ -87,21 +93,37 @@ export class VideoListComponent implements OnInit {
   }
 
   loadFormConfig() {
-    this.config.formConfig.titleNew = 'Add new Team Member';
-    this.config.formConfig.titleEdit = 'Edit Team Member';
+    let queryCategory = new MiaQuery();
+    queryCategory.addWhere('type', 0);
+
+    this.config.formConfig.titleNew = 'New video';
+    this.config.formConfig.titleEdit = 'Edit video';
     this.config.formConfig.service = this.videoService;
     this.config.formConfig.config = new MiaFormConfig();
     this.config.formConfig.config.hasSubmit = false;
     this.config.formConfig.config.fields = [
       { key: 'photo', type: MiaField.TYPE_PHOTO, label: 'Photo' },
-      { key: 'firstname', type: MiaField.TYPE_STRING, label: 'Firstname' },
-      { key: 'lastname', type: MiaField.TYPE_STRING, label: 'Lastname' },
-      { key: 'email', type: MiaField.TYPE_EMAIL, label: 'Email' },
-      { key: 'role', type: MiaField.TYPE_SELECT, label: 'Role', extra: {
+      { key: 'title', type: MiaField.TYPE_STRING, label: 'Title' },
+      { key: 'categories', type: MiaField.TYPE_CHIPS_AND_SELECT_SERVICE, label: 'Category', caption: '', extra: { 
+        title: 'Categories', 
+        service: this.categoryService, 
+        field_display: 'title', 
+        field_list: 'categories-auto', 
+        query: queryCategory,
+        can_add: true,
+        add_title: 'Add new category',
+        add_subject: new Subject<any>().pipe(switchMap(it => this.categoryModal.open(new MiaCategory()))) } 
+      },
+      //{ key: 'creator_id', type: MiaField.TYPE_SELECT_SERVICE, extra: { service: this.testService, field_display: 'title', query: new MiaQuery() } },
+      { key: 'type_extra', type: MiaField.TYPE_SELECT, label: 'Modality', extra: {
         options: [
-          { id: 1, title: 'Admin' },
+          { id: 0, title: 'Body Talk' },
+          { id: 1, title: 'Free Fall' },
         ]
       }},
+      { key: 'caption', type: MiaField.TYPE_STRING, label: 'Description' },
+      { key: 'status', type: MiaField.TYPE_CUSTOM, label: 'Show video', extra: { component: SwitchFieldComponent } },
+      
     ];
     this.config.formConfig.config.errorMessages = [
       { key: 'required', message: 'The "%label%" is required.' }
