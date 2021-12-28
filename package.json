@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "build2": "ng build --prod --project=@agencycoda/mia-video-core && cd dist/agencycoda/mia-video-core/ && npm publish --access public",
+    "build3": "ng build --prod --project=@agencycoda/mia-video-panel && cd dist/agencycoda/mia-video-panel/ && npm publish --access public",
     "test": "ng test"
   },
   "private": true,
